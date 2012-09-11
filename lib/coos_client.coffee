@@ -15,12 +15,13 @@ class Coos
         Twitter: "@mariohct"
         Created: 2012
 
-    constructor: (coosServer, @updateTime) ->
+    constructor: (@io, coosServer, @updateTime) ->
         if not @updateTime?
             @updateTime = UPDATE_TIME
-        
+        if not @io?
+            throw 'Socket-io is required'
         if not coosServer?
-            throw "Server Address should be defined"
+            throw 'Server Address should be defined'
         else
             @socket = io.connect(coosServer)
 
